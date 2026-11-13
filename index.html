@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense & Budget Visualizer</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>Expense & Budget Visualizer</h1>
+            <button id="themeToggle" class="btn-secondary" aria-label="Toggle Dark/Light Mode">🌙 Dark Mode</button>
+        </header>
+
+        <!-- Total Balance Section -->
+        <section class="balance-card">
+            <h2>TOTAL BALANCE</h2>
+            <div id="totalBalance" class="balance-amount">$0.00</div>
+        </section>
+
+        <div class="main-grid">
+            <!-- Left Column: Form & Controls -->
+            <div class="left-panel">
+                <!-- Add Transaction Form -->
+                <section class="card">
+                    <h3>Add Transaction</h3>
+                    <form id="transactionForm">
+                        <div class="form-group">
+                            <label for="itemName">Item Name</label>
+                            <input type="text" id="itemName" placeholder="e.g., Cilok" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="itemAmount">Amount ($)</label>
+                            <input type="number" id="itemAmount" step="0.01" placeholder="0.00" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="itemCategory">Category</label>
+                            <select id="itemCategory" required>
+                                <option value="Food">Food</option>
+                                <option value="Transport">Transport</option>
+                                <option value="Fun">Fun</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn-primary">Add Transaction</button>
+                    </form>
+                </section>
+
+                <!-- Optional Challenge: Custom Category -->
+                <section class="card">
+                    <h3>Custom Category</h3>
+                    <div class="form-group inline-group">
+                        <input type="text" id="customCategoryName" placeholder="New category name">
+                        <button type="button" id="addCategoryBtn" class="btn-secondary">Add</button>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Column: Transactions & Chart -->
+            <div class="right-panel">
+                <!-- Sorting Controls -->
+                <div class="controls-bar">
+                    <label for="sortControl">Sort By:</label>
+                    <select id="sortControl">
+                        <option value="default">Default (Latest)</option>
+                        <option value="amount-desc">Amount: High to Low</option>
+                        <option value="amount-asc">Amount: Low to High</option>
+                        <option value="category">Category</option>
+                    </select>
+                </div>
+
+                <!-- Transaction List -->
+                <section class="card">
+                    <h3>Transactions</h3>
+                    <div id="transactionList" class="transaction-list">
+                        <p class="empty-msg">No transactions added yet.</p>
+                    </div>
+                </section>
+
+                <!-- Visual Chart -->
+                <section class="card">
+                    <h3>Spending by Category</h3>
+                    <div class="chart-container">
+                        <canvas id="spendingChart"></canvas>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
